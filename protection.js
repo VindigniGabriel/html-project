@@ -53,7 +53,7 @@
     // Verificar periódicamente
     setInterval(function() {
         const before = new Date();
-        debugger; // Esto activará el depurador si está abierto
+        // debugger; // Esto activará el depurador si está abierto - Comentado para desarrollo
         const after = new Date();
         if (after - before > 100) {
             document.body.innerHTML = '<div style="text-align:center;padding:50px;"><h1>Access Denied</h1><p>Debugging detected. This action is prohibited.</p><p>© 2025 Gabriel Vindigni - All rights reserved</p></div>';
