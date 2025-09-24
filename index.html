@@ -581,48 +581,58 @@
         <div class="watermark-text">© Gabriel Vindigni - Tall Tree Trucking</div>
     </div>
 
-    <!-- JavaScript para protección contra copia -->
+    <!-- Ofuscación básica para dificultar la lectura del código -->
     <script>
-        // Mensaje en consola
-        console.log('%c¡ADVERTENCIA!', 'color: red; font-size: 30px; font-weight: bold;');
-        console.log('%cEste sitio web y su código están protegidos por derechos de autor.', 'font-size: 16px;');
-        console.log('%c© 2025 Gabriel Vindigni - Todos los derechos reservados', 'font-size: 14px; font-style: italic;');
-
-        // Deshabilitar menú contextual (clic derecho)
-        document.addEventListener('contextmenu', function(e) {
-            e.preventDefault();
-            alert('El menú contextual está deshabilitado en este sitio.');
-            return false;
-        });
-
-        // Deshabilitar teclas de inspección y otras combinaciones
-        document.addEventListener('keydown', function(e) {
-            // Deshabilitar F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U
-            if (
-                e.keyCode === 123 || // F12
-                (e.ctrlKey && e.shiftKey && e.keyCode === 73) || // Ctrl+Shift+I
-                (e.ctrlKey && e.shiftKey && e.keyCode === 74) || // Ctrl+Shift+J
-                (e.ctrlKey && e.keyCode === 85) // Ctrl+U
-            ) {
-                e.preventDefault();
-                return false;
+        // Función para ofuscar el HTML después de cargarse
+        function ofuscateHTML() {
+            // Insertar comentarios aleatorios en el código
+            const allElements = document.querySelectorAll('*');
+            for (let i = 0; i < allElements.length; i++) {
+                if (Math.random() > 0.7) {
+                    const comment = document.createComment('Protection ' + Math.random().toString(36).substring(2, 15));
+                    allElements[i].parentNode.insertBefore(comment, allElements[i]);
+                }
             }
+            
+            // Añadir atributos de datos falsos
+            document.querySelectorAll('div, p, span, table').forEach(el => {
+                el.setAttribute('data-' + Math.random().toString(36).substring(2, 8), 
+                               Math.random().toString(36).substring(2, 15));
+            });
+        }
+        
+        // Ejecutar después de que la página se cargue
+        window.addEventListener('DOMContentLoaded', function() {
+            setTimeout(ofuscateHTML, 100);
         });
-
-        // Deshabilitar arrastrar imágenes
-        document.addEventListener('dragstart', function(e) {
-            if (e.target.tagName.toLowerCase() === 'img') {
-                e.preventDefault();
-                return false;
+        
+        // Detector de herramientas de desarrollo (versión básica)
+        let devtoolsOpen = false;
+        
+        function detectDevTools() {
+            const threshold = 160;
+            const widthThreshold = window.outerWidth - window.innerWidth > threshold;
+            const heightThreshold = window.outerHeight - window.innerHeight > threshold;
+            
+            if (widthThreshold || heightThreshold) {
+                if (!devtoolsOpen) {
+                    devtoolsOpen = true;
+                    alert('Se ha detectado el uso de herramientas de desarrollo. Esta acción está prohibida.');
+                    // Redirigir o mostrar página de error
+                    // window.location.href = 'error.html';
+                }
+            } else {
+                devtoolsOpen = false;
             }
-        });
-
-        // Función para mostrar mensaje de copyright al intentar copiar
-        document.addEventListener('copy', function(e) {
-            e.preventDefault();
-            alert('© 2025 Gabriel Vindigni - Todos los derechos reservados\nLa copia de este contenido no está permitida.');
-            return false;
-        });
+        }
+        
+        // Verificar periódicamente
+        setInterval(detectDevTools, 1000);
     </script>
+    
+    <!-- Cargar scripts de protección externos -->
+    <script src="protection.js" defer></script>
+    <script src="loader.js" defer></script>
+    <script src="obfuscator.js" defer></script>
 </body>
 </html>
