@@ -6,6 +6,9 @@
     <title>Tall Tree Trucking</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <meta name="theme-color" content="#2c3e50">
+    <!-- Protección contra copia -->
+    <meta name="copyright" content="© 2025 Tall Tree Trucking - All rights reserved">
+    <meta name="author" content="Gabriel Vindigni">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
         
@@ -306,6 +309,41 @@
                 font-size: 14px;
             }
         }
+        
+        /* Estilos para la marca de agua */
+        .watermark {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        
+        .watermark-text {
+            transform: rotate(-45deg);
+            font-size: 6vw;
+            color: rgba(0, 0, 0, 0.07);
+            white-space: nowrap;
+            user-select: none;
+            pointer-events: none;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        /* Deshabilitar selección de texto */
+        body {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
     </style>
 </head>
 <body>
@@ -538,5 +576,53 @@
         <p>By: ___________________________________________</p>
         <p style="text-align: center; font-weight: 500; text-transform: uppercase;">Customer/Authorized Signatory</p>
     </div>
+    <!-- Marca de agua -->
+    <div class="watermark">
+        <div class="watermark-text">© Gabriel Vindigni - Tall Tree Trucking</div>
+    </div>
+
+    <!-- JavaScript para protección contra copia -->
+    <script>
+        // Mensaje en consola
+        console.log('%c¡ADVERTENCIA!', 'color: red; font-size: 30px; font-weight: bold;');
+        console.log('%cEste sitio web y su código están protegidos por derechos de autor.', 'font-size: 16px;');
+        console.log('%c© 2025 Gabriel Vindigni - Todos los derechos reservados', 'font-size: 14px; font-style: italic;');
+
+        // Deshabilitar menú contextual (clic derecho)
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+            alert('El menú contextual está deshabilitado en este sitio.');
+            return false;
+        });
+
+        // Deshabilitar teclas de inspección y otras combinaciones
+        document.addEventListener('keydown', function(e) {
+            // Deshabilitar F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U
+            if (
+                e.keyCode === 123 || // F12
+                (e.ctrlKey && e.shiftKey && e.keyCode === 73) || // Ctrl+Shift+I
+                (e.ctrlKey && e.shiftKey && e.keyCode === 74) || // Ctrl+Shift+J
+                (e.ctrlKey && e.keyCode === 85) // Ctrl+U
+            ) {
+                e.preventDefault();
+                return false;
+            }
+        });
+
+        // Deshabilitar arrastrar imágenes
+        document.addEventListener('dragstart', function(e) {
+            if (e.target.tagName.toLowerCase() === 'img') {
+                e.preventDefault();
+                return false;
+            }
+        });
+
+        // Función para mostrar mensaje de copyright al intentar copiar
+        document.addEventListener('copy', function(e) {
+            e.preventDefault();
+            alert('© 2025 Gabriel Vindigni - Todos los derechos reservados\nLa copia de este contenido no está permitida.');
+            return false;
+        });
+    </script>
 </body>
 </html>
