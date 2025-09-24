@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tall Tree Trucking</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta name="theme-color" content="#2c3e50">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+        
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            margin: 0;
+            padding: 30px;
+            line-height: 1.5;
+            color: #333;
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: #fff;
+        }
+        
+        .main-title {
+            text-align: center;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #000;
+            padding-bottom: 8px;
+            width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .main-title h1 {
+            font-size: 26px;
+            font-weight: 700;
+            margin: 0;
+            padding: 0;
+            letter-spacing: 1px;
+            color: #000;
+        }
+        
+        .reservation-info {
+            display: flex;
+            justify-content: space-between;
+            margin: 15px 0 25px;
+            padding: 0 20px;
+        }
+        
+        .reservation-number {
+            font-weight: 500;
+            font-size: 16px;
+            text-align: left;
+            flex: 1;
+        }
+        
+        .reservation-type {
+            font-weight: 700;
+            font-size: 16px;
+            text-transform: uppercase;
+            text-align: right;
+            flex: 1;
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #2c3e50;
+            padding-bottom: 15px;
+        }
+        
+        .logo-title {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        
+        .info-table {
+            width: 60%;
+            border-collapse: separate;
+            border-spacing: 5px;
+            margin-bottom: 15px;
+        }
+        
+        .info-table td {
+            padding: 6px 10px;
+            vertical-align: top;
+            font-size: 14px;
+        }
+        
+        .info-table td:nth-child(odd) {
+            font-weight: 500;
+            color: #2c3e50;
+        }
+        
+        .section-title {
+            font-weight: 700;
+            text-align: center;
+            background-color: #2c3e50;
+            color: white;
+            padding: 8px;
+            margin: 25px 0 15px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 14px;
+        }
+        
+        .two-column {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 0;
+        }
+        
+        .column {
+            width: 48%;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 4px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .column p {
+            margin: 10px 0;
+            line-height: 1.6;
+        }
+        
+        .charges-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .charges-table th, .charges-table td {
+            border: 1px solid #ddd;
+            padding: 10px 12px;
+            text-align: left;
+        }
+        
+        .charges-table th {
+            background-color: #2c3e50;
+            color: white;
+            font-weight: 500;
+            text-transform: uppercase;
+            font-size: 13px;
+        }
+        
+        .charges-table tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        .total-row {
+            font-weight: 700;
+            background-color: #eef2f7 !important;
+        }
+        
+        .total-row td:last-child {
+            color: #2c3e50;
+        }
+        
+        .privacy-section {
+            font-size: 12px;
+            margin-top: 30px;
+            border-top: 1px solid #ddd;
+            padding-top: 15px;
+            color: #555;
+            line-height: 1.6;
+            text-align: justify;
+        }
+        
+        .signature-section {
+            margin-top: 40px;
+            border-top: 1px solid #ddd;
+            padding-top: 20px;
+            text-align: center;
+        }
+        
+        .signature-section p:first-child {
+            margin-bottom: 30px;
+        }
+        
+        /* Estilos específicos para destacar información importante */
+        .highlight {
+            font-weight: 700;
+            color: #2c3e50;
+        }
+        
+        .declined {
+            color: #e74c3c;
+            font-weight: 500;
+        }
+        
+        .warning-text {
+            text-align: center;
+            margin: 25px 0;
+            font-weight: 700;
+            color: #e74c3c;
+            padding: 10px;
+            border: 1px solid #e74c3c;
+            border-radius: 4px;
+            background-color: #fef5f5;
+        }
+        
+        /* Estilos responsive para dispositivos móviles */
+        @media only screen and (max-width: 768px) {
+            body {
+                padding: 15px;
+            }
+            
+            .main-title {
+                width: 95%;
+            }
+            
+            .main-title h1 {
+                font-size: 22px;
+            }
+            
+            .reservation-info {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .reservation-type {
+                text-align: left;
+            }
+            
+            .header {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .logo-title {
+                margin-bottom: 15px;
+            }
+            
+            .info-table {
+                width: 100%;
+                font-size: 13px;
+                display: block;
+                overflow-x: auto;
+            }
+            
+            .info-table tr {
+                display: flex;
+                flex-wrap: wrap;
+            }
+            
+            .info-table td {
+                flex: 1 1 40%;
+                min-width: 120px;
+            }
+            
+            .two-column {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .column {
+                width: 100%;
+            }
+            
+            .charges-table {
+                font-size: 13px;
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+            
+            .charges-table th, .charges-table td {
+                padding: 6px 8px;
+            }
+        }
+        
+        /* Ajustes adicionales para pantallas muy pequeñas */
+        @media only screen and (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+            
+            .info-table td {
+                padding: 4px 6px;
+                font-size: 12px;
+                word-break: break-word;
+            }
+            
+            .charges-table {
+                font-size: 12px;
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+            
+            .charges-table th, .charges-table td {
+                padding: 4px 6px;
+            }
+            
+            .privacy-section {
+                font-size: 11px;
+                text-align: left;
+            }
+            
+            .signature-section p:first-child {
+                margin-bottom: 20px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-title">
+        <h1>Rental Reservation</h1>
+    </div>
+    
+    <div class="reservation-info">
+        <div class="reservation-number">
+            <span>Reservation #: 54576935</span>
+        </div>
+        <div class="reservation-type">
+            <span>COMMERCIAL LOCAL</span>
+        </div>
+    </div>
+
+    <div class="header">
+        <div class="logo-title">
+            <img src="logo.svg" alt="TALL TREE TRUCKING" width="200">
+        </div>
+        <table class="info-table">
+            <tr>
+                <td>Created by:</td>
+                <td>G . O T T O</td>
+                <td>Pick Up Date:</td>
+                <td>02/02/24 09:18 AM</td>
+            </tr>
+            <tr>
+                <td>Completed by:</td>
+                <td>G.OTTO</td>
+                <td>Return Date:</td>
+                <td>02/28/24 09:18 AM</td>
+            </tr>
+            <tr>
+                <td>Entered At:</td>
+                <td>05698-3069</td>
+                <td>Created On:</td>
+                <td>01/29/24 05:41 PM</td>
+            </tr>
+            <tr>
+                <td>Status:</td>
+                <td>CONFIRMED</td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="two-column">
+        <div class="column">
+            <div class="section-title">CUSTOMER INFORMATION</div>
+            <p>
+                <span class="highlight">Account:</span> 2387RO34<br>
+                <span class="highlight">USDOT:</span> 3947688<br>
+                <span class="highlight">Company:</span> TALL TREE TRUCKING LLC<br>
+                <span class="highlight">Address:</span> 2346 S LYNHURST DR<br>
+                <span class="highlight">Location:</span> IN 46241
+            </p>
+        </div>
+        <div class="column">
+            <div class="section-title">PICK UP/DROP OFF LOCATION</div>
+            <p>
+                <i class="fas fa-map-marker-alt" style="color: #e74c3c; margin-right: 5px;"></i> 3906 TURNER AVE<br>
+                PALNO, IL 60545<br>
+                <i class="fas fa-phone" style="color: #3498db; margin-right: 5px;"></i> USA Voice (331) 249-3206<br>
+                <i class="fas fa-fax" style="color: #7f8c8d; margin-right: 5px;"></i> Fax (331) 249-3206
+            </p>
+        </div>
+    </div>
+
+    <div class="two-column">
+        <div class="column">
+            <div class="section-title">DRIVER NAME(S):</div>
+            <p style="text-align: center; font-style: italic; color: #7f8c8d;">
+                <i class="fas fa-user-circle" style="font-size: 24px; margin-right: 10px;"></i> No driver information provided
+            </p>
+        </div>
+        <div class="column">
+            <div class="section-title">TRAVEL SCOPE</div>
+            <p style="text-align: center;">
+                <i class="fas fa-route" style="color: #2980b9; margin-right: 10px; font-size: 18px;"></i>
+                <span class="highlight" style="font-size: 18px;">Interstate</span>
+            </p>
+        </div>
+    </div>
+
+    <div class="section-title">UNIT INFORMATION</div>
+    <table class="info-table" style="width: 100%;">
+        <tr>
+            <td width="15%">Unit #:</td>
+            <td width="25%">2028</td>
+            <td width="25%">Max. Payload:</td>
+            <td width="35%">0 lbs.</td>
+        </tr>
+        <tr>
+            <td>Model:</td>
+            <td>T/A Tractor Super Premium Sleeper</td>
+            <td>VIN:</td>
+            <td class="highlight">1XKYDP9X8FJ461969</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td>Plate:</td>
+            <td>IRL5190</td>
+        </tr>
+    </table>
+
+    <div class="warning-text">
+        NO HAZARDOUS MATERIAL BEING TRANSPORTED
+    </div>
+
+    <div class="section-title">OPTIONAL PROTECTION PLANS</div>
+    <table class="info-table">
+        <tr>
+            <td>Limited Damage Waiver/LDW $1000 Responsibility</td>
+            <td><span class="declined">*DECLINED*</span></td>
+        </tr>
+        <tr>
+            <td>Policy # SELF INSURED</td>
+            <td>Expires 06/01/2024</td>
+            <td>Deductible <= 5K</td>
+        </tr>
+        <tr>
+            <td>Limited Damage Waiver/LDW $2,000 Responsibility</td>
+            <td><span class="declined">*DECLINED*</span></td>
+        </tr>
+        <tr>
+            <td>Limited Damage Waiver/LDW $5000 Responsibility</td>
+            <td><span class="declined">*DECLINED*</span></td>
+        </tr>
+    </table>
+
+    <div class="section-title">CHARGES</div>
+    <table class="charges-table">
+        <tr>
+            <th>Type</th>
+            <th>Quantity</th>
+            <th>Unit of Meas</th>
+            <th>Rate</th>
+            <th>Charge</th>
+        </tr>
+        <tr>
+            <td class="highlight">2028 - T/A Tractor Super Premium Sleeper</td>
+            <td colspan="4"></td>
+        </tr>
+        <tr>
+            <td>Rate Options:</td>
+            <td colspan="4">
+                <table style="width: 100%; border-collapse: collapse; border: none;">
+                    <tr>
+                        <td style="border: none; padding: 5px 10px;">$50.00 / Hour</td>
+                        <td style="border: none; padding: 5px 10px;">$200.00 / Day</td>
+                        <td style="border: none; padding: 5px 10px;">$1,000.00 / Week</td>
+                        <td style="border: none; padding: 5px 10px;">$4,333.00 / Month</td>
+                        <td style="border: none; padding: 5px 10px;">$0.1900 /Mile</td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td>Monthly Rate</td>
+            <td>1</td>
+            <td>Month</td>
+            <td>$4,333.00</td>
+            <td class="highlight">$4,333.00</td>
+        </tr>
+        <tr>
+            <td>Vehicle Licensing Recovery Fee</td>
+            <td>1</td>
+            <td>Day</td>
+            <td>$5.00</td>
+            <td>$5.00</td>
+        </tr>
+        <tr>
+            <td>Environmental Fee</td>
+            <td>1</td>
+            <td>Day</td>
+            <td>$5.00</td>
+            <td>$5.00</td>
+        </tr>
+        <tr class="total-row">
+            <td colspan="4">SUBTOTAL:</td>
+            <td>$4,343.00</td>
+        </tr>
+    </table>
+
+    <div class="section-title">TAXES</div>
+    <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px; background-color: #f8f9fa; border-radius: 4px; margin: 10px 0;">
+        <span class="highlight">Estimated Taxes</span>
+        <span style="font-weight: 500; color: #2c3e50;">Not Included <i class="fas fa-info-circle" style="color: #3498db; margin-left: 5px;"></i></span>
+    </div>
+
+    <div class="section-title">PAYMENTS AND REFUNDS</div>
+    <table class="charges-table">
+        <tr>
+            <th>Pay Type</th>
+            <th>Trans</th>
+            <th>Card #</th>
+            <th>Date</th>
+            <th>Approval Code</th>
+            <th>APR</th>
+        </tr>
+        <tr>
+            <td class="highlight">VISA</td>
+            <td><i class="fas fa-check"></i></td>
+            <td>***2584</td>
+            <td>1/29/2024</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="total-row">
+            <td colspan="5">ESTIMATED TOTAL</td>
+            <td class="highlight">$4,343.00</td>
+        </tr>
+    </table>
+
+    <div class="privacy-section">
+        <p>
+            Tall Tree Trucking LLC respects your privacy. Tall Tree Trucking LLC collects contact, driver's license, and payment information from Customers
+            at time of rental, and shares this information with service providers as needed to facilitate the rental process, perform watch list checks, and process
+            payments. You may have the right to request copies or deletion of the personal information we collect about you under certain local privacy laws.
+            For details on how Tall Tree Trucking LLC and its trusted partners manage your personal information, provide you with choices regarding your
+            personal information, and a statement of your privacy rights, see our full Privacy Policy sending email to <a href="mailto:rent@talltreetrucking.com">rent@talltreetrucking.com</a> or calling at
+            505-477-4771
+        </p>
+    </div>
+
+    <div class="signature-section">
+        <p>By: ___________________________________________</p>
+        <p style="text-align: center; font-weight: 500; text-transform: uppercase;">Customer/Authorized Signatory</p>
+    </div>
+</body>
+</html>
